@@ -7,11 +7,12 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import HomeLayouts from './Layouts/HomeLayouts.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <HomeLayouts></HomeLayouts>,
   },
 ]);
 
