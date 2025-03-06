@@ -11,12 +11,17 @@ import HomeLayouts from './Layouts/HomeLayouts.jsx';
 import ExploreGears from './components/ExploreGears.jsx';
 import AddEquipment from './components/AddEquipment.jsx';
 import MyCollection from './components/MyCollection.jsx';
+import Home from './components/Home.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayouts></HomeLayouts>,
     children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
       {
         path: 'explore',
         element: <ExploreGears></ExploreGears>

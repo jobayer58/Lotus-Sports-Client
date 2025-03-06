@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
         <div >
             <div className="">
-                <div className="navbar flex justify-around items-center py-4">
+                <div className="navbar flex justify-around items-center">
                     <div className="flex justify-center items-center ">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="lg:hidden">
@@ -49,7 +49,7 @@ const Navbar = () => {
                     </div>
                     <div className="">
                         <div className="flex justify-center items-center md:gap-4 gap-1">
-                            <NavLink to='/auth/login' className="btn px-8 py-6 text-[20px]">LOGIN</NavLink>
+                            <NavLink to='/auth/login' className="bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn px-8 py-6 text-[20px]">LOGIN</NavLink>
                         </div>
                     </div>
                 </div>

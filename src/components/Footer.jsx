@@ -8,7 +8,7 @@ import yt from '../assets/youtube-48.png'
 const Footer = () => {
     return (
         // bg-[#222222] bg-[#272727]
-        <div className='bg-[#000000]  text-[#ffffff]'>
+        <div className='bg-[#000000]  text-[#ffffff] '>
             <div>
                 {/* upper text */}
                 <div className='py-10 text-center'>
