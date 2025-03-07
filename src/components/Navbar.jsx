@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
-    const {user ,logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
     const links = <>
         <NavLink to='/'>HOME</NavLink>
@@ -40,7 +40,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <div className="flex justify-center items-center">
-                            <img className="h-24 w-24 object-cover" src={logo} alt="" />
+                            <img className="md:h-24 md:w-24 h-20 w-20 object-cover" src={logo} alt="" />
 
                         </div>
                     </div>
@@ -52,7 +52,11 @@ const Navbar = () => {
                     <div className="">
                         <div className="flex justify-center items-center md:gap-4 gap-1">
                             {
-                                user && user?.email ? <button onClick={logOut} className='bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn px-8 py-6 text-[20px]'>LOGOUT</button> : <NavLink to='login' className="bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn px-8 py-6 text-[20px]">LOGIN</NavLink>
+                                 user?.email && <div><img className="md:w-14 md:h-14 w-10 h-10 rounded-full object-cover" src={user?.photoURL} alt="" /></div>
+                                    
+                            }
+                            {
+                                user && user?.email ? <button onClick={logOut} className='bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px]'>LOGOUT</button> : <NavLink to='login' className="bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px]">LOGIN</NavLink>
                             }
                         </div>
                     </div>

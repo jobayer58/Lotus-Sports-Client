@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
+
+    const {userSignin,setUser} = useContext(AuthContext)
+
     const handleLogin = e => {
         e.preventDefault()
         const form = e.target
-        const name = form.name.value
+        const email = form.email.value
         const password = form.password.value 
-        
+        const signIn = {email,password}
+        console.log(signIn);
+        userSignin(email,password)
+        .then(result => {
+            const user = result.user
+            setUser(user)
+        })
+        .catch(error => {
+            error.message
+        })
+
     }
     return (
         <div>
@@ -29,7 +43,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input  name='password' placeholder="Password" className="input input-bordered border-[#4DC879] md:w-76" required />
+                                <input type='password' name='password' placeholder="Password" className="input input-bordered border-[#4DC879] md:w-76" required />
                                
                                 <button  className=' text-xl absolute right-2 top-8'>
                                    
