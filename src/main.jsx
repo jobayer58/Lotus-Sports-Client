@@ -12,6 +12,9 @@ import ExploreGears from './components/ExploreGears.jsx';
 import AddEquipment from './components/AddEquipment.jsx';
 import MyCollection from './components/MyCollection.jsx';
 import Home from './components/Home.jsx';
+import Login from './authenticationPage/Login.jsx';
+import Register from './authenticationPage/Register.jsx';
+import AuthProvider from './provider/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: 'collection',
         element: <MyCollection></MyCollection>
+      },
+      {
+        path: 'login',
+        element: <Login></Login>
+      },
+      {
+        path: 'resister',
+        element: <Register></Register>
       }
     ]
   },
@@ -40,6 +51,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
