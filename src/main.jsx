@@ -15,6 +15,7 @@ import Home from './components/Home.jsx';
 import Login from './authenticationPage/Login.jsx';
 import Register from './authenticationPage/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
+import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,11 +32,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'addEquipment',
-        element: <AddEquipment></AddEquipment>
+        element:
+          <PrivateRoute>
+            <AddEquipment></AddEquipment>
+          </PrivateRoute>
       },
       {
         path: 'collection',
-        element: <MyCollection></MyCollection>
+        element: 
+        <PrivateRoute>
+          <MyCollection></MyCollection>
+        </PrivateRoute>
       },
       {
         path: 'login',
@@ -52,7 +59,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>,
 )

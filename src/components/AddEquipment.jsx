@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const AddEquipment = () => {
+    const { user } = useContext(AuthContext)
     const handleAddEquipment = e => {
         e.preventDefault()
-        const form = e.target 
+        const form = e.target
         const name = form.name.value
         const category = form.category.value
         const price = form.price.value
@@ -13,13 +16,36 @@ const AddEquipment = () => {
         const details = form.details.value
         const photo = form.photo.value
 
-        const newEquipment ={name,category,price,ratting,processing,stock,details,photo}
+        const newEquipment = { name, category, price, ratting, processing, stock, details, photo }
         console.log(newEquipment);
+
+        // send data to the server
+        fetch('http://localhost:5000/equipment', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newEquipment)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'Sports Equipment added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                      })
+                }
+            })
     }
     return (
         <div>
             <div className=' lg:p-24 p-4 lg:pt-0 md:p-6 bg-[#cde9ed] '>
                 <h2 className='text-center text-3xl pt-10'>Add New Sports Equipments</h2>
+                <p className="text-2xl">Admin Name : {user?.displayName}</p>
+                <p className=" text-xl ">Admin Email : {user?.email}</p>
                 <form onSubmit={handleAddEquipment} className='pt-10'>
                     {/* form row-1 */}
                     <div className=' md:flex gap-8'>
