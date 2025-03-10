@@ -28,7 +28,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'explore',
-        element: <ExploreGears></ExploreGears>
+        element: <ExploreGears></ExploreGears>,
+        loader: () => fetch('http://localhost:5000/equipment') 
       },
       {
         path: 'addEquipment',
