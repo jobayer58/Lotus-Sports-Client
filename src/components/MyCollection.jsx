@@ -17,8 +17,8 @@ const MyCollection = () => {
            {
             user?.displayName && <h1 className='text-center text-2xl'>I Am {user?.displayName}</h1>
            }
-           <p className='md:text-2xl text-xl md:px-10 px-3 py-5'>My Collection List : ({collection.length}) Item</p>
-           <div className='space-y-6'>
+           <p className='md:text-2xl text-xl md:px-10 px-3 py-2'>My Collection List : ({collection.length}) Item</p>
+           <div className='space-y-6 py-4'>
             {
                 collection.map(collection => <CollectionList key={collection._id} collection={collection}></CollectionList>)
             }

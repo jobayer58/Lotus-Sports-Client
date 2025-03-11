@@ -1,8 +1,40 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 // import deleteIcon from '../assets/icons8-delete-48.png'
 
-const CollectionList = ({collection}) => {
-    const {name, price, ratting, photo ,category,details} = collection
+const CollectionList = ({ collection }) => {
+    const { name, price, ratting, photo, category, details, _id } = collection
+
+    const handleDeleteItem = _id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/collection/${_id}`,{
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                              Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                              });
+                        }
+                    })
+
+            }
+        });
+    }
     return (
         <div className='md:px-10 px-3'>
             <div className='md:flex md:flex-row md:justify-start md:p-5 flex flex-col justify-center items-center  rounded-2xl bg-gradient-to-r from-[#ddd6f3]  to-[#faaca8] '>
@@ -17,7 +49,7 @@ const CollectionList = ({collection}) => {
                     <p>Rate: {ratting}</p>
                     <div className='flex gap-5'>
                         <button className='btn bg-gradient-to-r from-[#faaca8] to-[#ddd6f3]  '>update Item</button>
-                        <button className='btn bg-gradient-to-r from-[#faaca8] to-[#ddd6f3] '>Delete Item</button>
+                        <button onClick={() => handleDeleteItem(_id)} className='btn bg-gradient-to-r from-[#faaca8] to-[#ddd6f3] '>Delete Item</button>
                     </div>
                 </div>
             </div>
