@@ -17,7 +17,7 @@ const AddEquipment = () => {
         const photo = form.photo.value
 
         const newEquipment = { name, category, price, ratting, processing, stock, details, photo }
-        console.log(newEquipment);
+        
 
         // send data to the server
         fetch('http://localhost:5000/equipment', {

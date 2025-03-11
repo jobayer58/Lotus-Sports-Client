@@ -10,7 +10,7 @@ const Navbar = () => {
         <NavLink to='/'>HOME</NavLink>
         <NavLink to='/explore'>EXPLORE GEARS</NavLink>
         <NavLink to='/addEquipment'>ADD EQUIPMENT</NavLink>
-        <NavLink to='/collection'>MY COLLECTION</NavLink>
+        <NavLink to='/myCollection'>MY COLLECTION</NavLink>
     </>
 
     return (
@@ -58,6 +58,7 @@ const Navbar = () => {
                             {
                                 user && user?.email ? <button onClick={logOut} className='bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px]'>LOGOUT</button> : <NavLink to='login' className="bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px]">LOGIN</NavLink>
                             }
+                            
                         </div>
                     </div>
                 </div>

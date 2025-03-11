@@ -16,6 +16,7 @@ import Login from './authenticationPage/Login.jsx';
 import Register from './authenticationPage/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
+import EquipmentDetails from './components/EquipmentDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,11 +40,19 @@ const router = createBrowserRouter([
           </PrivateRoute>
       },
       {
-        path: 'collection',
+        path: '/equipment/details/:id',
+        element: <PrivateRoute>
+          <EquipmentDetails></EquipmentDetails>
+        </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/equipment/${params.id}`)
+      },
+      {
+        path: 'myCollection',
         element: 
         <PrivateRoute>
           <MyCollection></MyCollection>
-        </PrivateRoute>
+        </PrivateRoute>,
+        loader: () => fetch('http://localhost:5000/collection')
       },
       {
         path: 'login',
@@ -52,9 +61,10 @@ const router = createBrowserRouter([
       {
         path: 'resister',
         element: <Register></Register>
-      }
+      },
     ]
   },
+  
 ]);
 
 createRoot(document.getElementById('root')).render(

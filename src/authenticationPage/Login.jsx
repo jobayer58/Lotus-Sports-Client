@@ -4,6 +4,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { Slide, toast, ToastContainer, Zoom } from 'react-toastify';
 
 const Login = () => {
 
@@ -17,8 +18,9 @@ const Login = () => {
         const form = e.target
         const email = form.email.value
         const password = form.password.value
-        const signIn = { email, password }
-        console.log(signIn);
+       
+        // const signIn = { email, password }
+        // console.log(signIn);
         userSignin(email, password)
             .then(result => {
                 const user = result.user
@@ -26,7 +28,13 @@ const Login = () => {
                 navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
-                error.message
+                if (error) {
+                    toast.warn('please provide a valid password',{
+                        position: "top-center",
+                        closeOnClick: true,
+                        transition: Zoom,
+                    });
+                }
             })
     }
 
@@ -40,9 +48,9 @@ const Login = () => {
 
 
             })
-            .catch(err => {
+            .catch(error => {
                 // 
-                err.code
+                console.log(error);
             })
     }
 
@@ -90,6 +98,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
