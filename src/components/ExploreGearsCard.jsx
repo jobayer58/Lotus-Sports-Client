@@ -1,21 +1,50 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { Slide, toast, ToastContainer } from 'react-toastify';
 
 const ExploreGearsCard = ({ equipment }) => {
-    const { name, price, ratting, stock, processing, photo, } = equipment
-    const {user} = useContext(AuthContext);
+    const { name, price, ratting, stock, processing, photo, _id } = equipment
+    const { user,loading } = useContext(AuthContext);
 
-    const handleAddToCollection = async (equipment) => {
-        
+    const [isAdded, setIsAdded] = useState(false);
+
+    useEffect(() => {
+        if (user?.email) {
+            fetch(`http://localhost:5000/collection?email=${user.email}`)
+                .then(res => res.json())
+                .then(data => {                       
+                    const exists = data.some(item => String(item._id) === String(_id));          
+                    setIsAdded(exists);
+                })
+                .catch(error => console.error("Error fetching collection:", error));
+        }
+    }, [user?.email, _id]);
+
+    if (loading) {
+        return <div className='flex min-h-screen justify-center items-center'><span className=" loading loading-bars loading-xl"></span></div>
+    }
+
+    const handleAddToCollection = async () => {
+
         if (!user?.email) {
             alert("Please log in to add items to your list.");
             return;
         }
-        const itemWithUser = {
-            ...equipment,
-            userEmail: user.email, 
-        };
+
+        if (isAdded) {
+            toast.info("This Item All Ready added My Collection",{
+                position: "top-center",
+                closeOnClick: true,
+                transition: Slide,
+            });
+            return;
+        }
+        
+        const { _id, ...itemWithoutId } = equipment;
+        const itemWithUser = { ...itemWithoutId, userEmail: user.email };
+
+        
         const response = await fetch('http://localhost:5000/collection', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -23,11 +52,19 @@ const ExploreGearsCard = ({ equipment }) => {
         });
         const data = await response.json();
         if (data.insertedId) {
-            alert("Added to My Collection Successfully!");
+            
+            toast("Added to My Collection Successfully!",{
+                position: "top-center",
+                closeOnClick: true,
+                transition: Slide,
+            });
+        } else {
+            toast.warn(data.message || "Something went wrong!");
         }
     };
     return (
         <div>
+             <ToastContainer></ToastContainer>
             <div className="card card-side bg-base-100 shadow-sm grid md:flex">
                 <figure className='rounded-t-[10px] rounded-b-none md:rounded-l-[10px] md:rounded-r-none'>
                     <img className='h-80 w-80 object-cover'
@@ -44,7 +81,12 @@ const ExploreGearsCard = ({ equipment }) => {
                         <NavLink to={`/equipment/details/${equipment._id}`}>
                             <button className='btn btn-dash  btn-info'>Viw Details</button>
                         </NavLink>
-                            <button onClick={()=> handleAddToCollection (equipment)} className='btn btn-outline btn-primary'>Add List</button>
+                        <button
+                            onClick={handleAddToCollection}
+                            className='btn btn-outline btn-info'
+                        >
+                           Add to Collection
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,17 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
-import { useLoaderData } from 'react-router-dom';
+import CollectionList from './CollectionList';
 
 const MyCollection = () => {
     const {user} = useContext(AuthContext)
-    const collection = useLoaderData()
+    const [collection,setCollection]=useState([])
+    useEffect(() => {
+        if (user?.email) {
+            fetch(`http://localhost:5000/collection?email=${user.email}`)
+                .then(res => res.json())
+                .then(data => setCollection(data));
+        }
+    }, [user]);
     return (
         <div>
-           <h1 className='text-center text-2xl'>I Am {user.displayName}</h1>
-           <p>my List : {collection.length}</p>
            {
-            collection.map(cl => <ha>{cl.name}</ha>)
+            user?.displayName && <h1 className='text-center text-2xl'>I Am {user?.displayName}</h1>
            }
+           <p className='md:text-2xl text-xl md:px-10 px-3 py-5'>My Collection List : ({collection.length}) Item</p>
+           <div className='space-y-6'>
+            {
+                collection.map(collection => <CollectionList key={collection._id} collection={collection}></CollectionList>)
+            }
+           </div>
+           
         </div>
     );
 };

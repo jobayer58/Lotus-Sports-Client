@@ -17,11 +17,16 @@ import Register from './authenticationPage/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 import EquipmentDetails from './components/EquipmentDetails.jsx';
+import noData from './assets/nodata.jpg'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayouts></HomeLayouts>,
+    errorElement: 
+    <div className='min-h-screen flex justify-center items-center'>
+      <img className='w-3/5' src={noData} alt="" />
+    </div>,
     children: [
       {
         path: '/',
@@ -30,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: 'explore',
         element: <ExploreGears></ExploreGears>,
-        loader: () => fetch('http://localhost:5000/equipment') 
+        loader: () => fetch('http://localhost:5000/equipment')
       },
       {
         path: 'addEquipment',
@@ -44,15 +49,15 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <EquipmentDetails></EquipmentDetails>
         </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/equipment/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/equipment/${params.id}`)
       },
       {
         path: 'myCollection',
-        element: 
-        <PrivateRoute>
-          <MyCollection></MyCollection>
-        </PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/collection')
+        element:
+          <PrivateRoute>
+            <MyCollection></MyCollection>
+          </PrivateRoute>,
+
       },
       {
         path: 'login',
@@ -64,7 +69,7 @@ const router = createBrowserRouter([
       },
     ]
   },
-  
+
 ]);
 
 createRoot(document.getElementById('root')).render(
