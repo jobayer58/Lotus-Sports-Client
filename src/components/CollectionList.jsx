@@ -1,9 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 // import deleteIcon from '../assets/icons8-delete-48.png'
 
-const CollectionList = ({ collection }) => {
+const CollectionList = ({ collection, setCollections, collections }) => {
     const { name, price, ratting, photo, category, details, _id } = collection
+
 
     const handleDeleteItem = _id => {
         Swal.fire({
@@ -17,18 +19,21 @@ const CollectionList = ({ collection }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/collection/${_id}`,{
+                fetch(`http://localhost:5000/collection/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
                         if (data.deletedCount > 0) {
-                              Swal.fire({
+                            Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
                                 icon: "success"
-                              });
+                            });
+                            const remaining = collections.filter(col => col._id !== _id)
+                            setCollections(remaining)
+
                         }
                     })
 
@@ -48,8 +53,10 @@ const CollectionList = ({ collection }) => {
                     <p>Specification: {details}</p>
                     <p>Rate: {ratting}</p>
                     <div className='flex gap-5'>
-                        <button className='btn bg-gradient-to-r from-[#faaca8] to-[#ddd6f3]  '>update Item</button>
-                        <button onClick={() => handleDeleteItem(_id)} className='btn bg-gradient-to-r from-[#faaca8] to-[#ddd6f3] '>Delete Item</button>
+                        <NavLink to={`/equipment/update/${collection._id}`}>
+                            <button className='btn bg-gradient-to-r from-[#faaca8] to-[#ddd6f3]  '>Update </button>
+                        </NavLink>
+                        <button onClick={() => handleDeleteItem(_id)} className='btn bg-gradient-to-r from-[#faaca8] to-[#ddd6f3] '>Delete </button>
                     </div>
                 </div>
             </div>

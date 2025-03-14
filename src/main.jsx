@@ -18,6 +18,7 @@ import AuthProvider from './provider/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 import EquipmentDetails from './components/EquipmentDetails.jsx';
 import noData from './assets/nodata.jpg'
+import UpdateEquipment from './components/UpdateEquipment.jsx';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
             <MyCollection></MyCollection>
           </PrivateRoute>,
 
+      },
+      {
+        path: '/equipment/update/:id',
+        element: <UpdateEquipment></UpdateEquipment>,
+        loader: ({params}) => fetch(`http://localhost:5000/collection/${params.id}`)
       },
       {
         path: 'login',
