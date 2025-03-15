@@ -40,9 +40,13 @@ const ExploreGearsCard = ({ equipment }) => {
             });
             return;
         }
-        
+
         const { _id, ...itemWithoutId } = equipment;
-        const itemWithUser = { ...itemWithoutId, userEmail: user.email };
+        const itemWithUser = { 
+            ...itemWithoutId, 
+            userEmail: user.email,
+            originalId: _id 
+        };
 
         
         const response = await fetch('http://localhost:5000/collection', {
