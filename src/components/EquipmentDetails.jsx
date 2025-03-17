@@ -19,9 +19,6 @@ const EquipmentDetails = () => {
                     <p>specification: {details}</p>
                     <p>Ratting: {ratting}</p>
                     <p>Processes time: {processing}</p>
-                    {/* <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Add My Favorite</button>
-                    </div> */}
                 </div>
             </div>
         </div>

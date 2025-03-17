@@ -7,7 +7,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Register = () => {
 
-    const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext)
+    const { createNewUser, setUser, updateUserProfile,theme } = useContext(AuthContext)
     const navigate = useNavigate()
     const [error, setError] = useState({})
     const [showPassword, setShowPassword] = useState(false)
@@ -63,7 +63,7 @@ const Register = () => {
 
     return (
         <div>
-            <div className="hero bg-[#EEF9FF]  py-12">
+            <div className={`hero py-12 md:h-[800px] ${theme !== "dark" && "bg-[#EEF9FF]" }`}>
                 <div className="hero-content flex-col md:flex-row-reverse  gap-0 ">
                     {/* <div className="text-center lg:text-left">
                         <img className='md:h-[580px]  md:w-[600px]  object-cover' src='' alt="" />

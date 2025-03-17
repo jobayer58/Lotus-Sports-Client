@@ -8,7 +8,7 @@ import { Slide, toast, ToastContainer, Zoom } from 'react-toastify';
 
 const Login = () => {
 
-    const { userSignin, setUser } = useContext(AuthContext)
+    const { userSignin, setUser ,theme} = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
@@ -56,7 +56,7 @@ const Login = () => {
 
     return (
         <div>
-            <div className="hero bg-[#EEF9FF]  md:h-[800px]">
+            <div className={`hero md:h-[800px] ${theme !== "dark" && "bg-[#EEF9FF]" }`}>
                 <div className="hero-content flex-col md:flex-row-reverse gap-0 ">
                     <div className="text-center lg:text-left">
                         <img className='md:h-[480px]' src='' alt="" />

@@ -61,10 +61,10 @@ const UpdateEquipment = () => {
     return (
         <div>
             <div className=' lg:p-24 p-4 lg:pt-0 md:p-6 bg-[#cde9ed] '>
-                <h2 className='text-center text-3xl pt-10'>Update Sports Equipments</h2>
-                <p className="text-2xl">Admin Name : {user?.displayName}</p>
-                <p className="  ">Admin Email : {user?.email}</p>
-                <div className='text-center text-xl py-4'>
+                <h2 className='text-center text-3xl pt-10 !text-black'>Update Sports Equipments</h2>
+                <p className="text-2xl !text-black">Admin Name : {user?.displayName}</p>
+                <p className=" !text-black ">Admin Email : {user?.email}</p>
+                <div className='text-center text-xl py-4 !text-black'>
                     <p>Update Item: {name}</p>
                 </div>
                 <form onSubmit={handleUpdateEquipment} className=''>
@@ -72,14 +72,14 @@ const UpdateEquipment = () => {
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Equipment Name</legend>
+                                <legend className="fieldset-legend !text-black">Equipment Name</legend>
                                 <input type="text" name='name' defaultValue={name} className="input w-full" placeholder="Equipment Name" />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Category Name</legend>
+                                <legend className="fieldset-legend !text-black"> Category Name</legend>
                                 <input type="text" name='category' defaultValue={category} className="input w-full" placeholder="Category Name" />
 
                             </fieldset>
@@ -89,14 +89,14 @@ const UpdateEquipment = () => {
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Price </legend>
+                                <legend className="fieldset-legend !text-black">Price </legend>
                                 <input type="text" name='price' defaultValue={price} className="input w-full" placeholder="Price " />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Ratting </legend>
+                                <legend className="fieldset-legend !text-black"> Ratting </legend>
                                 <input type="text" name='ratting' defaultValue={ratting} className="input w-full" placeholder="Ratting " />
 
                             </fieldset>
@@ -106,14 +106,14 @@ const UpdateEquipment = () => {
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Processing Time </legend>
+                                <legend className="fieldset-legend !text-black">Processing Time </legend>
                                 <input type="text" name='processing' defaultValue={processing} className="input w-full" placeholder="Processing Time " />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Stock Status </legend>
+                                <legend className="fieldset-legend !text-black"> Stock Status </legend>
                                 <input type="text" name='stock' defaultValue={stock} className="input w-full" placeholder="Stock Status " />
 
                             </fieldset>
@@ -123,14 +123,14 @@ const UpdateEquipment = () => {
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Details </legend>
+                                <legend className="fieldset-legend !text-black">Details </legend>
                                 <input type="text" name='details' defaultValue={details} className="input w-full" placeholder="Details " />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Photo URL</legend>
+                                <legend className="fieldset-legend !text-black"> Photo URL</legend>
                                 <input type="text" name='photo' defaultValue={photo} className="input w-full" placeholder="Photo URL" />
 
                             </fieldset>

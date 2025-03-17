@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import logo from '../assets/Lotus_Esports_29logo_square.webp'
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut,theme, setTheme } = useContext(AuthContext)
+    
 
     const links = <>
         <NavLink to='/'>HOME</NavLink>
@@ -54,18 +55,25 @@ const Navbar = () => {
                         <div className="flex justify-center items-center md:gap-4 gap-1">
                             {
                                 user?.email && <div><img data-tooltip-id="logo-img-tooltip" className="md:w-14 md:h-14 w-10 h-10 rounded-full object-cover" src={user?.photoURL} alt="" />
-                                    <Tooltip id="logo-img-tooltip"  place="left" effect="solid">
+                                    <Tooltip id="logo-img-tooltip" place="left" effect="solid">
                                         {
-                                            user?.displayName 
+                                            user?.displayName
                                         }
                                     </Tooltip>
                                 </div>
 
                             }
                             {
-                                user && user?.email ? <button onClick={logOut} className='bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px]'>LOGOUT</button> : <NavLink to='login' className="bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px]">LOGIN</NavLink>
+                                user && user?.email ? <button onClick={logOut} className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px] ${theme === "dark" && " text-black" }`}>LOGOUT</button> : <NavLink to='login' className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px] ${theme === "dark" && " text-black" }`}>LOGIN</NavLink>
                             }
-
+                            <label className="flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    className="toggle theme-controller"
+                                    checked={theme === "dark"}
+                                    onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+                                />
+                            </label>
                         </div>
                     </div>
                 </div>

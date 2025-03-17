@@ -43,22 +43,22 @@ const AddEquipment = () => {
     return (
         <div>
             <div className=' lg:p-24 p-4 lg:pt-0 md:p-6 bg-[#cde9ed] '>
-                <h2 className='text-center text-3xl pt-10'>Add New Sports Equipments</h2>
-                <p className="text-2xl">Admin Name : {user?.displayName}</p>
-                <p className=" text-xl ">Admin Email : {user?.email}</p>
+                <h2 className='text-center text-3xl pt-10 !text-black'>Add New Sports Equipments</h2>
+                <p className="text-2xl !text-black">Admin Name : {user?.displayName}</p>
+                <p className=" text-xl !text-black">Admin Email : {user?.email}</p>
                 <form onSubmit={handleAddEquipment} className='pt-10'>
                     {/* form row-1 */}
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Equipment Name</legend>
+                                <legend className="fieldset-legend !text-black">Equipment Name</legend>
                                 <input type="text" name='name' className="input w-full" placeholder="Equipment Name" />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Category Name</legend>
+                                <legend className="fieldset-legend !text-black"> Category Name</legend>
                                 <input type="text" name='category' className="input w-full" placeholder="Category Name" />
 
                             </fieldset>
@@ -68,14 +68,14 @@ const AddEquipment = () => {
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Price </legend>
+                                <legend className="fieldset-legend !text-black">Price </legend>
                                 <input type="text" name='price' className="input w-full" placeholder="Price " />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Ratting </legend>
+                                <legend className="fieldset-legend !text-black"> Ratting </legend>
                                 <input type="text" name='ratting' className="input w-full" placeholder="Ratting " />
 
                             </fieldset>
@@ -85,14 +85,14 @@ const AddEquipment = () => {
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Processing Time </legend>
+                                <legend className="fieldset-legend !text-black">Processing Time </legend>
                                 <input type="text" name='processing' className="input w-full" placeholder="Processing Time " />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Stock Status </legend>
+                                <legend className="fieldset-legend !text-black"> Stock Status </legend>
                                 <input type="text" name='stock' className="input w-full" placeholder="Stock Status " />
 
                             </fieldset>
@@ -102,14 +102,14 @@ const AddEquipment = () => {
                     <div className=' md:flex gap-8'>
                         <div className='md:w-1/2'>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Details </legend>
+                                <legend className="fieldset-legend !text-black">Details </legend>
                                 <input type="text" name='details' className="input w-full" placeholder="Details " />
 
                             </fieldset>
                         </div>
                         <div className='md:w-1/2 '>
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend"> Photo URL</legend>
+                                <legend className="fieldset-legend !text-black"> Photo URL</legend>
                                 <input type="text" name='photo' className="input w-full" placeholder="Photo URL" />
 
                             </fieldset>
