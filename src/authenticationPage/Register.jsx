@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { NavLink,  useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 const Register = () => {
 
-    const { createNewUser, setUser, updateUserProfile,theme } = useContext(AuthContext)
+    const { createNewUser, setUser, updateUserProfile, theme } = useContext(AuthContext)
     const navigate = useNavigate()
-    const [error, setError] = useState({})
+    const [error] = useState({})
     const [showPassword, setShowPassword] = useState(false)
 
     const handleRegister = e => {
@@ -17,7 +18,11 @@ const Register = () => {
         const form = e.target
         const name = form.name.value
         if (name.length < 5) {
-            setError({ ...error, name: 'must be more the 5 character long' })
+            toast.warn('must be more the 5 character long',{
+                position: "top-center",
+                closeOnClick: true,
+                transition: Zoom,
+            })
             return
         }
         const photo = form.photo.value
@@ -25,11 +30,13 @@ const Register = () => {
         const password = form.password.value
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*)[A-Za-z\d@$!%*?&]{6,}$/;
         if (!regex.test(password)) {
-            setError({...error, password: 'must uppercase,lowercase, number'})
+            toast.warn('Must be One Uppercase,One Lowercase,One Number ', {
+                position: "top-center",
+                closeOnClick: true,
+                transition: Zoom,
+            })
             return
         }
-        const resister = { name, photo, email, password }
-        console.log(resister);
         createNewUser(email, password)
             .then(result => {
                 const user = result.user
@@ -63,7 +70,8 @@ const Register = () => {
 
     return (
         <div>
-            <div className={`hero py-12 md:h-[800px] ${theme !== "dark" && "bg-[#EEF9FF]" }`}>
+            <ToastContainer></ToastContainer>
+            <div className={`hero py-12 md:h-[800px] ${theme !== "dark" && "bg-[#EEF9FF]"}`}>
                 <div className="hero-content flex-col md:flex-row-reverse  gap-0 ">
                     {/* <div className="text-center lg:text-left">
                         <img className='md:h-[580px]  md:w-[600px]  object-cover' src='' alt="" />

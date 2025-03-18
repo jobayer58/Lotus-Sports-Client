@@ -18,7 +18,7 @@ const ExploreGearsCard = ({ equipment }) => {
                     const exists = data.some(item => String(item._id) === String(_id));
                     setIsAdded(exists);
                 })
-                .catch(error => console.error("Error fetching collection:", error));
+                .catch(error => toast.warn(error.message));
         }
     }, [user?.email, _id]);
 
@@ -71,9 +71,9 @@ const ExploreGearsCard = ({ equipment }) => {
         <div>
             <ToastContainer></ToastContainer>
             <Fade delay={50} cascade damping={0.3}>
-                <div className="card card-side bg-base-100 shadow-sm grid md:flex">
-                    <figure className='rounded-t-[10px] rounded-b-none md:rounded-l-[10px] md:rounded-r-none'>
-                        <img className='h-80 w-80 object-cover'
+                <div className="card card-side bg-base-100 shadow-sm grid lg:flex">
+                    <figure className='rounded-t-[10px] rounded-b-none lg:rounded-l-[10px] lg:rounded-r-none'>
+                        <img className='h-80 w-80 md:w-full object-cover'
                             src={photo}
                             alt="Movie" />
                     </figure>
@@ -83,7 +83,7 @@ const ExploreGearsCard = ({ equipment }) => {
                         <p>Stock-Status :{stock}</p>
                         <p>Ratting: {ratting}</p>
                         <p>Delivery-Time: {processing}</p>
-                        <div className='flex gap-5'>
+                        <div className='flex md:gap-5 gap-2'>
                             <NavLink to={`/equipment/details/${equipment._id}`}>
                                 <button className='btn btn-dash  btn-info'>Viw Details</button>
                             </NavLink>

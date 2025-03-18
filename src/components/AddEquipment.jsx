@@ -29,7 +29,6 @@ const AddEquipment = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'success!',
@@ -43,7 +42,7 @@ const AddEquipment = () => {
     return (
         <div>
             <div className=' lg:p-24 p-4 lg:pt-0 md:p-6 bg-[#cde9ed] '>
-                <h2 className='text-center text-3xl pt-10 !text-black'>Add New Sports Equipments</h2>
+                <h2 className='text-center md:text-3xl pt-10 !text-black py-3'>Add New Sports Equipments</h2>
                 <p className="text-2xl !text-black">Admin Name : {user?.displayName}</p>
                 <p className=" text-xl !text-black">Admin Email : {user?.email}</p>
                 <form onSubmit={handleAddEquipment} className='pt-10'>

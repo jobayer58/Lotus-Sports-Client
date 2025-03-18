@@ -19,8 +19,6 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
        
-        // const signIn = { email, password }
-        // console.log(signIn);
         userSignin(email, password)
             .then(result => {
                 const user = result.user
@@ -49,8 +47,7 @@ const Login = () => {
 
             })
             .catch(error => {
-                // 
-                console.log(error);
+                toast.warn(error.message)
             })
     }
 
