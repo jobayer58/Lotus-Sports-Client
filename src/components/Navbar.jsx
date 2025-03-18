@@ -19,12 +19,12 @@ const Navbar = () => {
         <div >
             <div className="">
                 <div className="navbar flex justify-around items-center">
-                    <div className="flex justify-center items-center ">
+                    <div className="flex justify-center items-center md:gap-16 gap-4">
                         <div className="dropdown">
-                            <div tabIndex={0} role="button" className="lg:hidden">
+                            <div tabIndex={0} role="button" className="lg:hidden ">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="md:h-9 md:w-9 h-6 w-6"
+                                    className="md:h-9 md:w-9 h-7 w-7 "
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -42,7 +42,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <div className="flex justify-center items-center">
-                            <img className="md:h-24 md:w-24 h-20 w-20 object-cover" src={logo} alt="" />
+                            <img className="md:h-24 md:w-24 h-16 w-16 object-cover" src={logo} alt="" />
 
                         </div>
                     </div>
@@ -64,7 +64,7 @@ const Navbar = () => {
 
                             }
                             {
-                                user && user?.email ? <button onClick={logOut} className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px] ${theme === "dark" && " text-black" }`}>LOGOUT</button> : <NavLink to='login' className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 md:py-6 md:text-[20px] ${theme === "dark" && " text-black" }`}>LOGIN</NavLink>
+                                user && user?.email ? <button onClick={logOut} className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 px-2  md:py-6 py-1 md:text-[20px] ${theme === "dark" && " text-black" }`}>LOGOUT</button> : <NavLink to='login' className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn md:px-8 px-2 md:py-6 py-2 md:text-[20px] ${theme === "dark" && " text-black" }`}>LOGIN</NavLink>
                             }
                             <label className="flex items-center cursor-pointer">
                                 <input

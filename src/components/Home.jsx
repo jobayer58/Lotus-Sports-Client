@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import BannerSlider from './BannerSlider';
 import { AuthContext } from '../provider/AuthProvider';
 import HomeProduct from './HomeProduct';
+import Service from './Service';
 
 const Home = () => {
     const {loading} = useContext(AuthContext)
@@ -12,6 +13,7 @@ const Home = () => {
         <div>
             <BannerSlider></BannerSlider>
             <HomeProduct></HomeProduct>
+            <Service></Service>
         </div>
     );
 };
