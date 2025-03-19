@@ -31,11 +31,7 @@ const ExploreGearsCard = ({ equipment }) => {
     const handleAddToCollection = async () => {
 
         if (!user?.email) {
-            toast.info("Please log in to add items to your list.", {
-                position: "top-center",
-                closeOnClick: true,
-                transition: Slide,
-            });
+            alert("Please log in to add items to your list.");
             return;
         }
 
@@ -64,7 +60,7 @@ const ExploreGearsCard = ({ equipment }) => {
         const data = await response.json();
         if (data.insertedId) {
 
-            toast.success("Added to My Collection Successfully!", {
+            toast("Added to My Collection Successfully!", {
                 position: "top-center",
                 closeOnClick: true,
                 transition: Slide,
