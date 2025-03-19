@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { Bounce, Zoom } from 'react-awesome-reveal';
-import { toast, ToastContainer } from 'react-toastify';
+
 
 const SportsCategories = () => {
     const { theme } = useContext(AuthContext)
@@ -9,7 +9,7 @@ const SportsCategories = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
 
     useEffect(() => {
-        let url = 'http://localhost:5000/categoryEquipment';
+        let url = 'https://lotus-sports-server.vercel.app/categoryEquipment';
         if (selectedCategory) {
             url += `?category=${selectedCategory}`;
         }
@@ -17,11 +17,12 @@ const SportsCategories = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setEquipments(data))
-            .catch(error => toast.warn(error.message));
+            .catch(error => {
+                error.message
+            });
     }, [selectedCategory]);
     return (
         <div>
-            <ToastContainer></ToastContainer>
             <h1 className={`text-center font-semibold text-2xl ${theme === "dark" ? 'bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] bg-clip-text text-transparent' : " text-black"}`}>Explore Lotus Sports </h1>
             <div className='md:flex grid grid-cols-3 justify-center items-center lg:gap-8 md:gap-4 py-6 md:space-x-0 md:space-y-0 space-x-2 space-y-2 px-3 md:px-0'>
                 {["Tennis", "Fitness", "Shoes", "Clothing", "Cricket", "Football"].map(category => (

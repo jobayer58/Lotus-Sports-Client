@@ -12,13 +12,15 @@ const ExploreGearsCard = ({ equipment }) => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/collection?email=${user.email}`)
+            fetch(`https://lotus-sports-server.vercel.app/collection?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     const exists = data.some(item => String(item._id) === String(_id));
                     setIsAdded(exists);
                 })
-                .catch(error => toast.warn(error.message));
+                .catch(error => {
+                    error.message
+                });
         }
     }, [user?.email, _id]);
 
@@ -50,7 +52,7 @@ const ExploreGearsCard = ({ equipment }) => {
         };
 
 
-        const response = await fetch('http://localhost:5000/collection', {
+        const response = await fetch('https://lotus-sports-server.vercel.app/collection', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(itemWithUser)
@@ -73,7 +75,7 @@ const ExploreGearsCard = ({ equipment }) => {
             <Fade delay={50} cascade damping={0.3}>
                 <div className="card card-side bg-base-100 shadow-sm grid lg:flex">
                     <figure className='rounded-t-[10px] rounded-b-none lg:rounded-l-[10px] lg:rounded-r-none'>
-                        <img className='h-80 w-80 md:w-full object-cover'
+                        <img className='lg:h-80 lg:w-80 md:w-full object-cover'
                             src={photo}
                             alt="Movie" />
                     </figure>

@@ -18,7 +18,7 @@ const MyCollection = () => {
     const [collections, setCollections] = useState([])
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/collection?email=${user.email}`)
+            fetch(`https://lotus-sports-server.vercel.app/collection?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => setCollections(data));
         }

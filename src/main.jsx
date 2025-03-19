@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: 'explore',
         element: <ExploreGears></ExploreGears>,
-        loader: () => fetch('http://localhost:5000/equipment')
+        loader: () => fetch('https://lotus-sports-server.vercel.app/equipment')
       },
       {
         path: 'addEquipment',
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <EquipmentDetails></EquipmentDetails>
         </PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/equipment/${params.id}`)
+        loader: ({ params }) => fetch(`https://lotus-sports-server.vercel.app/equipment/${params.id}`)
       },
       {
         path: 'myCollection',
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
       {
         path: '/equipment/update/:id',
         element: <UpdateEquipment></UpdateEquipment>,
-        loader: ({params}) => fetch(`http://localhost:5000/collection/${params.id}`)
+        loader: ({params}) => fetch(`https://lotus-sports-server.vercel.app/collection/${params.id}`)
       },
       {
         path: 'login',

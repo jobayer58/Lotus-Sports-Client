@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { toast, ToastContainer } from 'react-toastify';
 
 const UpdateEquipment = () => {
     const {user} =useContext(AuthContext)
@@ -26,7 +25,7 @@ const UpdateEquipment = () => {
             const itemId = originalId || _id;
             
             // send data to the server
-            fetch(`http://localhost:5000/equipment/${itemId}`, {
+            fetch(`https://lotus-sports-server.vercel.app/equipment/${itemId}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -51,12 +50,13 @@ const UpdateEquipment = () => {
                         });
                     }
                 })
-                .catch((error) => toast.warn(error.message));
+                .catch((error) => {
+                    error.message
+                });
         }
 
     return (
         <div>
-            <ToastContainer></ToastContainer>
             <div className=' lg:p-24 p-4 lg:pt-0 md:p-6 bg-[#cde9ed] '>
                 <h2 className='text-center md:text-3xl pt-10 py-3 !text-black'>Update Sports Equipments</h2>
                 <p className="text-2xl !text-black">Admin Name : {user?.displayName}</p>

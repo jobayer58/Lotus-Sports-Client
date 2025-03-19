@@ -20,7 +20,7 @@ const AddEquipment = () => {
         
 
         // send data to the server
-        fetch('http://localhost:5000/equipment', {
+        fetch('https://lotus-sports-server.vercel.app/equipment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -22,7 +22,7 @@ const CollectionList = ({ collection, setCollections, collections }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/collection/${_id}`, {
+                fetch(`https://lotus-sports-server.vercel.app/collection/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

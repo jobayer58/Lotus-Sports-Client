@@ -49,7 +49,7 @@ const Footer = () => {
                                 <li>FaQs</li>
                             </ul>
                         </div>
-                        {/* About */}
+                        {/* ABOUT */}
                         <div className='space-y-4'>
                             <h1>ABOUT</h1>
                             <ul className='space-y-3 text-[#AEAEAE]'>
