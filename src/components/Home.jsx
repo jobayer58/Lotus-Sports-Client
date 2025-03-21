@@ -4,6 +4,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import HomeProduct from './HomeProduct';
 import Service from './Service';
 import SportsCategories from './SportsCategories';
+import OurReviews from './OurReviews';
 
 const Home = () => {
     const {loading} = useContext(AuthContext)
@@ -15,6 +16,7 @@ const Home = () => {
             <BannerSlider></BannerSlider>
             <HomeProduct></HomeProduct>
             <SportsCategories></SportsCategories>
+            <OurReviews></OurReviews>
             <Service></Service>
         </div>
     );

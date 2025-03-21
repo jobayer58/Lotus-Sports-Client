@@ -22,10 +22,10 @@ const Footer = () => {
                         <button className=' bg-[#ffffff] text-[#000000]  font-semibold py-[10px] lg:px-5 px-3'>SUBSCRIBE</button>
                     </div>
                     <div className='flex justify-center mt-4 gap-3'>
-                        <img src={fb} alt="" />
-                        <img src={ins} alt="" />
-                        <img src={tw} alt="" />
-                        <img src={yt} alt="" />
+                        <a target='_blank' href="https://www.facebook.com/profile.php?id=100094378203638"><img src={fb} alt="" /></a>
+                        <a target='_blank' href="https://www.instagram.com/jhankarmahbub/?hl=bn"><img src={ins} alt="" /></a>
+                        <a target='_blank' href="https://x.com/jhankar_mahbub/status/1682216994953654272"><img src={tw} alt="" /></a>
+                        <a target='_blank' href="https://www.youtube.com/@JhankarMahbub"><img src={yt} alt="" /></a>
                     </div>
 
                 </div>
@@ -111,6 +111,8 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
+                <hr />
+                <h1 className='text-center py-2 text-sm text-[#AEAEAE]'>Copyright © 2025 Lotus Sports By programming Hero .</h1>
 
             </div>
 

@@ -7,9 +7,9 @@ const HomeProductCard = ({product}) => {
     return (
         <div>
             <Fade delay={50} cascade damping={0.3}>
-                <div className="card card-side bg-base-100 shadow-sm grid md:flex">
-                    <figure className='rounded-t-[10px] rounded-b-none md:rounded-l-[10px] md:rounded-r-none'>
-                        <img className='lg:h-80 lg:w-80 md:w-full object-cover'
+                <div className="card card-side bg-base-100 shadow-sm grid lg:flex">
+                    <figure className='rounded-t-[10px] rounded-b-none lg:rounded-l-[10px] lg:rounded-r-none'>
+                        <img className='lg:h-80 lg:w-80 md:w-full md:h-72 object-cover'
                             src={photo}
                             alt="Movie" />
                     </figure>
