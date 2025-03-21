@@ -1,12 +1,20 @@
-# React + Vite
+# LOTUS SPORTS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- live link: https://lotus-sports.web.app/
 
-Currently, two official plugins are available:
+# DESCRIPTION
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Lotus Sports is a dynamic and user-friendly platform designed for sports enthusiasts to explore, manage, and purchase high-quality sports gear. Whether you're looking for football, cricket, tennis, or gym equipment, we’ve got you covered! With seamless authentication, an intuitive product collection system, and category-based browsing, finding your perfect gear has never been easier.
 
-## Expanding the ESLint configuration
+# 🚀 Key Features:
+- 🔐 Authentication System – Register with email/password or log in using Google.
+- 🛒 Add to My Collection – Save your favorite sports gear to your personal collection.
+- ➕ Add & Update Equipment – Easily add new equipment and update existing ones.
+- ❌ Delete from Collection – Remove unwanted items with a delete confirmation prompt.
+- ✅ Success Notifications – Get real-time confirmation messages for add, update, and delete actions.
+- 📌 Product Category System – Click on category buttons to filter and display specific sports gear.
+- 📊 Price Sorting – Sort products in ascending or descending order based on price.
+- 🌍 Active Footer with Social Media Links – Stay connected through social media icons in the footer.
+- 📱 Responsive & Modern UI – Built with React & Tailwind CSS for a smooth experience.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 📌 Tech Stack: React | Tailwind CSS | MongoDB | Firebase | Express.js
