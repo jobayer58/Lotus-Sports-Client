@@ -56,7 +56,7 @@ const SportsCategories = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {equipments.map((equipment) => (
                     <Zoom key={equipment._id}>
-                        <div className="border border-yellow-300 rounded-xl p-4 shadow-sm hover:shadow-lg transition duration-300 bg-white">
+                        <div className={`border border-yellow-300 rounded-xl p-4 shadow-sm hover:shadow-lg transition duration-300 bg-white ${theme === "dark" ? 'bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] bg-clip-text text-transparent' : " text-black" }`}>
                             <img
                                 src={equipment.photo}
                                 alt={equipment.name}
