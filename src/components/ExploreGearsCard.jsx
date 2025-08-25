@@ -1,66 +1,45 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useLoaderData, NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { Slide, toast, ToastContainer } from 'react-toastify';
-import { Fade } from 'react-awesome-reveal';
+import 'react-toastify/dist/ReactToastify.css';
 
-const ExploreGearsCard = ({ equipment }) => {
-    const { name, price, ratting, stock, processing, photo, _id } = equipment
-    const { user, loading } = useContext(AuthContext);
+const ExploreGears = () => {
+    const loadedEquipments = useLoaderData();
+    const [equipments, setEquipments] = useState(loadedEquipments);
+    const { theme, user } = useContext(AuthContext);
 
-    const [isAdded, setIsAdded] = useState(false);
+    const handleAscendingPrice = () => {
+        const sortedEquipments = [...equipments].sort((a, b) => a.price - b.price);
+        setEquipments(sortedEquipments);
+    };
 
-    useEffect(() => {
-        if (user?.email) {
-            fetch(`https://lotus-sports-server.vercel.app/collection?email=${user.email}`)
-                .then(res => res.json())
-                .then(data => {
-                    const exists = data.some(item => String(item._id) === String(_id));
-                    setIsAdded(exists);
-                })
-                .catch(error => {
-                    error.message
-                });
-        }
-    }, [user?.email, _id]);
+    const handleDescendingPrice = () => {
+        const sortedEquipments = [...equipments].sort((a, b) => b.price - a.price);
+        setEquipments(sortedEquipments);
+    };
 
-    if (loading) {
-        return <div className='flex min-h-screen justify-center items-center'><span className=" loading loading-bars loading-xl"></span></div>
-    }
-
-    const handleAddToCollection = async () => {
-
+    const handleAddToCollection = async (equipment) => {
         if (!user?.email) {
             alert("Please log in to add items to your list.");
             return;
         }
 
-        if (isAdded) {
-            toast.info("This Item All Ready added My Collection", {
-                position: "top-center",
-                closeOnClick: true,
-                transition: Slide,
-            });
-            return;
-        }
-
-        const { _id, ...itemWithoutId } = equipment;
         const itemWithUser = {
-            ...itemWithoutId,
+            ...equipment,
             userEmail: user.email,
-            originalId: _id
+            originalId: equipment._id,
         };
-
 
         const response = await fetch('https://lotus-sports-server.vercel.app/collection', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(itemWithUser)
+            body: JSON.stringify(itemWithUser),
         });
+
         const data = await response.json();
         if (data.insertedId) {
-
-            toast("Added to My Collection Successfully!", {
+            toast.success("Added to My Collection!", {
                 position: "top-center",
                 closeOnClick: true,
                 transition: Slide,
@@ -69,38 +48,76 @@ const ExploreGearsCard = ({ equipment }) => {
             toast.warn(data.message || "Something went wrong!");
         }
     };
+
     return (
-        <div>
-            <ToastContainer></ToastContainer>
-            <Fade delay={50} cascade damping={0.3}>
-                <div className="card card-side bg-base-100 shadow-sm grid lg:flex">
-                    <figure className='rounded-t-[10px] rounded-b-none lg:rounded-l-[10px] lg:rounded-r-none'>
-                        <img className='lg:h-80 lg:w-80 md:w-full md:h-72 object-cover'
-                            src={photo}
-                            alt="Movie" />
-                    </figure>
-                    <div className="card-body ">
-                        <h2 className="card-title">{name}</h2>
-                        <p>Price: {price}</p>
-                        <p>Stock-Status :{stock}</p>
-                        <p>Ratting: {ratting}</p>
-                        <p>Delivery-Time: {processing}</p>
-                        <div className='flex md:gap-5 gap-2'>
-                            <NavLink to={`/equipment/details/${equipment._id}`}>
-                                <button className='btn btn-dash  btn-info'>Viw Details</button>
-                            </NavLink>
-                            <button
-                                onClick={handleAddToCollection}
-                                className='btn btn-outline btn-info'
-                            >
-                                Add to Collection
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </Fade>
+        <div className="px-5 md:px-10 py-10">
+            <ToastContainer />
+            <h1 className={`text-center font-semibold md:text-4xl text-3xl py-6 ${theme === "dark"
+                ? 'bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] bg-clip-text text-transparent'
+                : "text-black"}`}>
+                All Sports Equipment ({loadedEquipments.length})
+            </h1>
+
+            {/* Sorting buttons */}
+            <div className="flex flex-wrap justify-end gap-4 mb-6">
+                <button onClick={handleAscendingPrice} className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn ${theme === "dark" && "text-black"}`}>
+                    Ascending Price
+                </button>
+                <button onClick={handleDescendingPrice} className={`bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] btn ${theme === "dark" && "text-black"}`}>
+                    Descending Price
+                </button>
+            </div>
+
+            {/* Table format */}
+            <div className="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
+                <table className="table w-full">
+                    {/* Table head */}
+                    <thead className="bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad]">
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Rating</th>
+                            <th>Delivery Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {equipments.map((equipment) => (
+                            <tr key={equipment._id} className="hover">
+                                <td>
+                                    <img
+                                        src={equipment.photo}
+                                        alt={equipment.name}
+                                        className="h-16 w-16 object-cover rounded"
+                                    />
+                                </td>
+                                <td className="font-semibold">{equipment.name}</td>
+                                <td>${equipment.price}</td>
+                                <td>{equipment.stock}</td>
+                                <td>{equipment.ratting}</td>
+                                <td>{equipment.processing}</td>
+                                <td className="flex flex-col gap-2">
+                                    <NavLink to={`/equipment/details/${equipment._id}`}>
+                                        <button className="px-3 py-1 rounded bg-sky-500 text-white hover:opacity-90">
+                                            View
+                                        </button>
+                                    </NavLink>
+                                    <button
+                                        onClick={() => handleAddToCollection(equipment)}
+                                        className="px-3 py-1 rounded border border-sky-500 text-sky-600 hover:bg-sky-50"
+                                    >
+                                        Add
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
 
-export default ExploreGearsCard;
+export default ExploreGears;

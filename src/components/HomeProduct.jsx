@@ -16,7 +16,7 @@ const HomeProduct = () => {
     return (
         <div>
             <h1 className={`text-center font-semibold text-3xl py-7 ${theme === "dark" ? 'bg-gradient-to-r from-[#f6ea6b] to-[#eef4ad] bg-clip-text text-transparent' : " text-black" }`}>Most Popular Collections</h1>
-            <div className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-10 px-5 space-y-4 md:space-y-0  py-8'>
+            <div className='md:grid md:grid-cols-3 lg:grid-cols-4 gap-6 md:px-10 px-5 space-y-4 md:space-y-0  py-8'>
                 {
                     products.map(product => <HomeProductCard
                         key={product._id}
